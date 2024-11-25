@@ -11,5 +11,8 @@ class Settings(BaseModel):
     API_PORT: int
     API_HOST: str
 
+    PARTNER_TOKEN: str
+    USER_TOKEN: str
+
 
 SETTINGS = Settings(**environ)
