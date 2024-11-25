@@ -4,6 +4,7 @@ import aiohttp
 from starlette.responses import JSONResponse
 from app.settings import SETTINGS
 
+# https://n1290414.yclients.com/company/1177126/personal/select-time?o=m3570915s17612273d2425111900
 router = APIRouter()
 
 
@@ -32,7 +33,6 @@ async def get_my_companies_info():
             return {"status": response.status, "response": await response.json()}
 
 
-# https://n1290414.yclients.com/company/1177126/personal/select-time?o=m3570915s17612273d2425111900
 @router.get("/book_times")
 async def get_book_times(
     company_id: int = 1177126,  # ID of the company
@@ -73,7 +73,7 @@ async def book_record(company_id: int = 1177126):  # ID of the company
                 "id": 176122723433,
                 "staff_id": 0,
                 "services": [17612273],
-                "datetime": "2024-11-25T19:00:00+03:00",
+                "datetime": "2024-11-25T19:03:00+03:00",
             }
         ],
     }
