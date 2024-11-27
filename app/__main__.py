@@ -1,6 +1,8 @@
 import asyncio
 import uvicorn
 from app.settings import SETTINGS
+from app.utils.mongodb import MongoDB
+from motor.motor_asyncio import AsyncIOMotorClient
 
 
 async def main():
