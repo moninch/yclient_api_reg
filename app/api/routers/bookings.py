@@ -5,8 +5,6 @@ from app.settings import SETTINGS
 
 router = APIRouter()
 
-# https://n1290414.yclients.com/company/1177126/create-record/record?o=m3570847s17612273d2427111500
-
 
 @router.get("/available_times")
 async def fetch_available_times(company_id=1177126, staff_id=3570847):
@@ -96,21 +94,22 @@ async def book_appointment(
     try:
         company_id = int(url.split("/company/")[1].split("/")[0])
         staff_id = int(url.split("o=m")[1].split("s")[0])
+        service = int(url.split("o=m")[1].split("s")[1].split("d")[0])
     except (IndexError, ValueError):
         raise HTTPException(status_code=400, detail="Неверный формат URL")
 
     # Проверить доступные услуги
-    services_data = await fetch_services(company_id=company_id, staff_id=staff_id)
-    services = services_data.get("services", [])
-    if not services:
-        raise HTTPException(status_code=400, detail="Услуги не найдены")
+    # services_data = await fetch_services(company_id=company_id, staff_id=staff_id)
+    # services = services_data.get("services", [])
+    # if not services:
+    #     raise HTTPException(status_code=400, detail="Услуги не найдены")
 
     # Проверить доступное время
-    available_times = await fetch_available_times(company_id, staff_id)
-    if datetime not in [
-        slot["datetime"] for slot in available_times.get("data", {}).get("seances", [])
-    ]:
-        raise HTTPException(status_code=400, detail="Время недоступно")
+    # available_times = await fetch_available_times(company_id, staff_id)
+    # if datetime not in [
+    #     slot["datetime"] for slot in available_times.get("data", {}).get("seances", [])
+    # ]:
+    #     raise HTTPException(status_code=400, detail="Время недоступно")
 
     # Создать запись
     book_url = f"https://api.yclients.com/api/v1/book_record/{company_id}"
@@ -127,7 +126,7 @@ async def book_appointment(
             {
                 "id": random.randint(100000, 999999),
                 "staff_id": staff_id,
-                "services": [services[0]["id"]],
+                "services": [service],
                 "datetime": datetime,
             }
         ],
