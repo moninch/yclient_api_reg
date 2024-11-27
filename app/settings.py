@@ -14,8 +14,8 @@ class Settings(BaseModel):
     MONGODB_URL: SecretStr
     MONGODB_DB: SecretStr
 
-    PARTNER_TOKEN: SecretStr
-    USER_TOKEN: SecretStr
+    PARTNER_TOKEN: str
+    USER_TOKEN: str
 
 
 SETTINGS = Settings(**environ)
