@@ -27,6 +27,7 @@ class MongoObject(BaseModel):
 
 
 class Company(MongoObject):
+    branch_id: int
     title: str
     email: str
     city: str
