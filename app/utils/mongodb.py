@@ -1,4 +1,5 @@
 import logging
+import asyncio
 
 from bson import ObjectId
 from typing import Iterable
@@ -25,14 +26,10 @@ class MongoObject(BaseModel):
         return dump
 
 
-class Services(MongoObject):
-    name: str
-    description: str
-    chat_id: int
-    token: str
-
-    username: str
-    password: str
+class Company(MongoObject):
+    title: str
+    email: str
+    city: str
 
 
 class MongoDB:
