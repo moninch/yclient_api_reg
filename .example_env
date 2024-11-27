@@ -5,3 +5,6 @@ API_HOST=localhost
 
 PARTNER_TOKEN=
 USER_TOKEN=
+
+MONGODB_URL=mongodb://
+MONGODB_DB=yclient
